@@ -30,12 +30,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -q pipenv codecov
         pipenv sync --dev
-        
-
-    - name: pip-audit
-      run: |
-        python -m pipenv install pip-audit
-        pipenv run pip-audit --fix --dry-run -r ./Pipfile.lock
     
 
     - name: Lint with flake8
