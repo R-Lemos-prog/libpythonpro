@@ -35,20 +35,20 @@ jobs:
     - name: pip-audit
       run: |
         python -m pipenv install pip-audit
-        pip-audit --fix --dry-run -r ./pipfile.lock
+        pipenv run pip-audit --fix --dry-run -r ./Pipfile.lock
     
 
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        pipenv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
 
     - name: Test with Pytest
       run: |
-        pytest libpythonpro --cov=libpythonpro
+        pipenv run pytest libpythonpro --cov=libpythonpro
 
 
     - name: Upload coverage reports to Codecov
